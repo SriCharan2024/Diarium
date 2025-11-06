@@ -1,0 +1,174 @@
+<div class="todo-page">
+  <h2>To-Do List</h2>
+  <p class="tagline cursive-text">Organize Your Tasks And Stay Productive ✨</p>
+
+  <!-- Todo Actions Bar -->
+  <div class="todo-actions">
+    <input 
+      type="text" 
+      placeholder="🔍 Search Todos..." 
+      ng-model="vm.searchText"
+      class="search-input"
+    />
+    
+    <div class="filter-buttons">
+      <button 
+        class="filter-btn" 
+        ng-class="{active: vm.filterStatus === 'all'}"
+        ng-click="vm.filterStatus = 'all'">
+        All ({{vm.getTodosCount().all}})
+      </button>
+      <button 
+        class="filter-btn" 
+        ng-class="{active: vm.filterStatus === 'active'}"
+        ng-click="vm.filterStatus = 'active'">
+        Active ({{vm.getTodosCount().active}})
+      </button>
+      <button 
+        class="filter-btn" 
+        ng-class="{active: vm.filterStatus === 'completed'}"
+        ng-click="vm.filterStatus = 'completed'">
+        Completed ({{vm.getTodosCount().completed}})
+      </button>
+    </div>
+    
+    <div class="action-buttons">
+      <button 
+        class="button-secondary" 
+        ng-if="vm.getTodosCount().completed > 0"
+        ng-click="vm.deleteCompleted()">
+        <i class="fa fa-trash"></i> Clear Completed
+      </button>
+      <button class="button-main" ng-click="vm.openNewTodoModal()">
+        <i class="fa fa-plus"></i> New Todo
+      </button>
+    </div>
+  </div>
+
+  <!-- Todos List -->
+  <div class="todos-list" ng-if="vm.getFilteredTodos().length > 0">
+    <div 
+      class="todo-item" 
+      ng-class="{'completed': todo.completed, [vm.getPriorityClass(todo)]: true}"
+      ng-repeat="todo in vm.getFilteredTodos() track by todo.id">
+      
+      <div class="todo-checkbox" ng-click="vm.toggleTodo(todo)">
+        <i class="fa" ng-class="todo.completed ? 'fa-check-circle' : 'fa-circle-thin'"></i>
+      </div>
+      
+      <div class="todo-content" ng-click="vm.editTodo(todo)">
+        <h4 class="todo-title" ng-class="{'strikethrough': todo.completed}">
+          {{todo.title}}
+        </h4>
+        <div class="todo-meta">
+          <span class="todo-priority" ng-if="todo.priority">
+            <i class="fa" ng-class="{'fa-exclamation-circle': todo.priority === 'high', 'fa-minus-circle': todo.priority === 'medium', 'fa-info-circle': todo.priority === 'low'}"></i>
+            {{todo.priority | uppercase}}
+          </span>
+          <span class="todo-date" ng-if="todo.dueDate">
+            <i class="fa fa-calendar"></i>
+            Due: {{vm.formatDate(todo.dueDate) | date:'shortDate'}}
+          </span>
+          <span class="todo-date" ng-if="!todo.dueDate && todo.createdDate">
+            <i class="fa fa-clock-o"></i>
+            {{todo.createdDate | date:'mediumDate'}}
+          </span>
+        </div>
+      </div>
+      
+      <div class="todo-actions-inline" ng-click="$event.stopPropagation()">
+        <button class="btn-icon" ng-click="vm.editTodo(todo)" title="Edit">
+          <i class="fa fa-edit"></i>
+        </button>
+        <button class="btn-icon btn-danger" ng-click="vm.deleteTodo(todo)" title="Delete">
+          <i class="fa fa-trash"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" ng-if="vm.getFilteredTodos().length === 0 && !vm.searchText">
+    <i class="fa fa-check-circle"></i>
+    <h3 ng-if="vm.filterStatus === 'all'">No Todos Yet</h3>
+    <h3 ng-if="vm.filterStatus === 'active'">All Done! 🎉</h3>
+    <h3 ng-if="vm.filterStatus === 'completed'">No Completed Todos</h3>
+    <p class="cursive-text">Start By Creating Your First Todo Item!</p>
+    <button class="button-main" ng-click="vm.openNewTodoModal()" style="margin-top: 20px;">
+      <i class="fa fa-plus"></i> Create Your First Todo
+    </button>
+  </div>
+
+  <div class="empty-state" ng-if="vm.getFilteredTodos().length === 0 && vm.searchText">
+    <i class="fa fa-search"></i>
+    <h3>No Results Found</h3>
+    <p class="cursive-text">Try A Different Search Term.</p>
+  </div>
+</div>
+
+<!-- New/Edit Todo Modal -->
+<div class="modal-overlay" ng-if="vm.showModal" ng-click="vm.closeModal()">
+  <div class="modal-content todo-modal" ng-click="$event.stopPropagation()">
+    <button class="modal-close" ng-click="vm.closeModal()">
+      <i class="fa fa-times"></i>
+    </button>
+    
+    <div class="modal-header">
+      <h3>{{vm.editingTodo ? 'Edit Todo' : 'New Todo'}}</h3>
+    </div>
+
+    <div class="modal-body">
+      <form ng-submit="vm.saveTodo()">
+        <div class="form-group">
+          <label for="todo-title">
+            <i class="fa fa-tasks"></i> Todo Item
+          </label>
+          <input 
+            type="text" 
+            id="todo-title"
+            ng-model="vm.currentTodo.title" 
+            placeholder="What Needs To Be Done?"
+            required
+            autofocus
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="todo-priority">
+            <i class="fa fa-flag"></i> Priority
+          </label>
+          <select 
+            id="todo-priority"
+            ng-model="vm.currentTodo.priority"
+            class="form-select">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="todo-due-date">
+            <i class="fa fa-calendar"></i> Due Date (Optional)
+          </label>
+          <input 
+            type="date" 
+            id="todo-due-date"
+            ng-model="vm.currentTodo.dueDate"
+            class="form-date"
+          />
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" ng-click="vm.closeModal()">
+            Cancel
+          </button>
+          <button type="submit" class="button-main">
+            <i class="fa fa-save"></i> {{vm.editingTodo ? 'Update Todo' : 'Save Todo'}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

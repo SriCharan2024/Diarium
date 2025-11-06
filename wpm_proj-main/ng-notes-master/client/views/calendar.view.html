@@ -1,0 +1,53 @@
+<div class="calendar-page">
+  <h2>Calendar</h2>
+  <p class="tagline cursive-text">View And Click On Dates To See Your Diary Entries 💜</p>
+
+  <!-- Calendar Header with Navigation -->
+  <div class="calendar-header">
+    <button class="calendar-nav-btn" ng-click="vm.previousMonth()">
+      <i class="fa fa-chevron-left"></i> Previous
+    </button>
+    <div class="calendar-month-year">{{ vm.monthName }} {{ vm.year }}</div>
+    <button class="calendar-nav-btn" ng-click="vm.nextMonth()">
+      Next <i class="fa fa-chevron-right"></i>
+    </button>
+  </div>
+
+  <!-- Calendar Grid -->
+  <div class="calendar-grid">
+    <!-- Day Headers -->
+    <div class="calendar-day-header" ng-repeat="dayName in ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']">
+      {{ dayName }}
+    </div>
+    
+    <!-- Empty cells for days before the first day of month -->
+    <div class="calendar-day other-month" ng-repeat="i in vm.emptyDays track by $index"></div>
+    
+    <!-- Calendar Days -->
+    <div 
+      class="calendar-day" 
+      ng-repeat="day in vm.days" 
+      ng-class="{
+        hasEntry: vm.entriesByDate[day.dateString],
+        selected: vm.selectedDate === day.dateString,
+        'other-month': day.isOtherMonth
+      }"
+      ng-click="vm.selectDate(day.dateString)">
+      {{ day.date }}
+    </div>
+  </div>
+
+  <!-- Selected Entry Display -->
+  <div class="selected-entry" ng-if="vm.selectedDate">
+    <h3>Entries For {{ vm.getFormattedDate(vm.selectedDate) }}</h3>
+    <div ng-repeat="entry in vm.entriesByDate[vm.selectedDate]" class="entry-card">
+      <h4>{{ entry.title }}</h4>
+      <p class="cursive-text">{{ entry.content }}</p>
+    </div>
+    <p class="cursive-text" ng-if="!vm.entriesByDate[vm.selectedDate] || !vm.entriesByDate[vm.selectedDate].length">
+      No Entries For This Date. Start Writing Your Thoughts! ✨
+    </p>
+  </div>
+</div>
+
+

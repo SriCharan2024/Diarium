@@ -1,0 +1,155 @@
+
+/* ================================
+   Diarium - Pastel Notes Theme
+   ================================ */
+
+/* ===== GENERAL ===== */
+body {
+  background-color: #fdfcfb;
+  font-family: 'Roboto', 'Noto Sans', sans-serif;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background-color: #ffd6d6; /* pastel pink */
+  color: #444;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.brand {
+  float: left;
+  margin-left: 20px;
+  font-size: 1.9em;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.brand a {
+  color: #444;
+  text-decoration: none;
+}
+
+.brand a:hover {
+  color: #ff7b7b;
+}
+
+/* ===== NAVIGATION / BUTTONS ===== */
+.navbar {
+  background-color: #ffecd2; /* soft peach */
+  border: none;
+}
+
+.navbar a {
+  color: #444;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #ff7b7b;
+}
+
+/* ===== NOTES CONTAINER ===== */
+.notes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 30px auto;
+  max-width: 1200px;
+  padding: 0 15px;
+}
+
+/* ===== NOTE CARD ===== */
+.note {
+  background-color: #fffaf0; /* pastel cream */
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  margin: 15px;
+  padding: 20px;
+  width: 280px;
+  min-height: 180px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+/* Note title */
+.note-title {
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+/* Note text */
+.note-content {
+  font-size: 1em;
+  color: #666;
+}
+
+/* ===== ADD NOTE BUTTON ===== */
+.add-note-btn {
+  background-color: #c1e1dc; /* mint green */
+  color: #444;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 25px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  transition: background 0.3s ease;
+}
+
+.add-note-btn:hover {
+  background-color: #a8d5cf;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  text-align: center;
+  background-color: #ffd6d6;
+  color: #555;
+  padding: 15px 0;
+  margin-top: 40px;
+  font-size: 0.9em;
+}
+
+/* ===== RIPPLE EFFECT ===== */
+.ripple-effect {
+  background: rgba(255, 182, 193, 0.3); /* light pastel pink ripple */
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c1e1dc;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8d5cf;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .notes-container {
+    justify-content: center;
+  }
+
+  .note {
+    width: 90%;
+  }
+}

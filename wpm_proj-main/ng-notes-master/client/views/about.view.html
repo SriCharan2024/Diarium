@@ -1,0 +1,20 @@
+<div class="about-page">
+  <h2>About <span class="brand">Diarium</span></h2>
+  <p class="cursive-text">Diarium - Digital Diary. Built With The MEAN Stack (MongoDB, Express, AngularJS, Node.js).</p>
+
+  <h4>Features:</h4>
+  <div class="features-grid">
+    <div class="feature-card" ng-repeat="feature in vm.features">
+      <i class="fa {{feature.icon}} icon"></i>
+      <h3>{{feature.title}}</h3>
+      <p class="cursive-text">{{feature.description}}</p>
+    </div>
+  </div>
+
+  <div class="developer-section" ng-if="vm.developer">
+    <h4>Developed by {{vm.developer.name}}</h4>
+    <p class="cursive-text">{{vm.developer.message}}</p>
+  </div>
+
+  <p class="footer-note cursive-text">Crafted With 💜 By Team Diarium</p>
+</div>

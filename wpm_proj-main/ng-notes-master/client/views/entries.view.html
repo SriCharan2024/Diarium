@@ -1,0 +1,132 @@
+<div class="entries-page">
+  <h2>My Entries</h2>
+  <p class="tagline cursive-text">Reflect, Write, And Remember Your Moments.</p>
+
+  <div class="entry-actions">
+    <input type="text" placeholder="🔍 Search Entries..." ng-model="searchText" />
+    <button class="button-main" ng-click="vm.openNewEntryModal()">
+      <i class="fa fa-plus"></i> New Entry
+    </button>
+  </div>
+
+  <div class="entries-list" ng-if="(vm.entries | filter:vm.searchEntry).length > 0">
+    <div class="entry-card" ng-repeat="entry in vm.entries | filter:vm.searchEntry track by entry.id" ng-click="vm.viewEntry(entry)">
+      <h4>{{entry.title || 'Untitled Entry'}}</h4>
+      <p>{{entry.content}}</p>
+      <p class="entry-date">
+        <i class="fa fa-calendar"></i> {{entry.date | date:'medium'}}
+      </p>
+      <div class="entry-actions-inline" ng-click="$event.stopPropagation()">
+        <button class="btn-icon" ng-click="vm.editEntry(entry)">
+          <i class="fa fa-edit"></i> Edit
+        </button>
+        <button class="btn-icon btn-danger" ng-click="vm.deleteEntry(entry)">
+          <i class="fa fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" ng-if="(vm.entries | filter:vm.searchEntry).length === 0 && !vm.searchText">
+    <i class="fa fa-book"></i>
+    <h3>No Entries Yet</h3>
+    <p class="cursive-text">Start Your Diary Journey By Creating Your First Entry! ✨</p>
+    <button class="button-main" ng-click="vm.openNewEntryModal()" style="margin-top: 20px;">
+      <i class="fa fa-plus"></i> Create Your First Entry
+    </button>
+  </div>
+
+  <div class="empty-state" ng-if="(vm.entries | filter:vm.searchEntry).length === 0 && vm.searchText">
+    <i class="fa fa-search"></i>
+    <h3>No Results Found</h3>
+    <p class="cursive-text">Try A Different Search Term.</p>
+  </div>
+</div>
+
+<!-- New/Edit Entry Modal -->
+<div class="modal-overlay" ng-if="vm.showModal" ng-click="vm.closeModal()">
+  <div class="modal-content" ng-click="$event.stopPropagation()">
+    <button class="modal-close" ng-click="vm.closeModal()">
+      <i class="fa fa-times"></i>
+    </button>
+    
+    <div class="modal-header">
+      <h3>{{vm.editingEntry ? 'Edit Entry' : 'New Entry'}}</h3>
+    </div>
+
+    <div class="modal-body">
+      <form ng-submit="vm.saveEntry()">
+        <div class="form-group">
+          <label for="entry-title">
+            <i class="fa fa-header"></i> Title
+          </label>
+          <input 
+            type="text" 
+            id="entry-title"
+            ng-model="vm.currentEntry.title" 
+            placeholder="Give Your Entry A Title..."
+            required
+            autofocus
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="entry-content">
+            <i class="fa fa-pencil"></i> Content
+          </label>
+          <textarea 
+            id="entry-content"
+            ng-model="vm.currentEntry.content" 
+            placeholder="Write Your Thoughts, Feelings, And Reflections Here... ✨"
+            required
+          ></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" ng-click="vm.closeModal()">
+            Cancel
+          </button>
+          <button type="submit" class="button-main">
+            <i class="fa fa-save"></i> {{vm.editingEntry ? 'Update Entry' : 'Save Entry'}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- View Entry Modal -->
+<div class="modal-overlay" ng-if="vm.showViewModal" ng-click="vm.closeViewModal()">
+  <div class="modal-content" ng-click="$event.stopPropagation()">
+    <button class="modal-close" ng-click="vm.closeViewModal()">
+      <i class="fa fa-times"></i>
+    </button>
+    
+    <div class="modal-header">
+      <h3>{{vm.viewingEntry.title || 'Untitled Entry'}}</h3>
+      <p style="color: #9ca3af; font-size: 0.9rem; margin-top: 8px;">
+        <i class="fa fa-calendar"></i> {{vm.viewingEntry.date | date:'fullDate'}}
+      </p>
+    </div>
+
+    <div class="modal-body">
+      <div style="white-space: pre-wrap; line-height: 1.8; color: #6b7280; font-family: 'Poppins', sans-serif;">
+        {{vm.viewingEntry.content}}
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-secondary" ng-click="vm.editEntry(vm.viewingEntry)">
+        <i class="fa fa-edit"></i> Edit
+      </button>
+      <button type="button" class="btn-secondary btn-danger" ng-click="vm.deleteEntry(vm.viewingEntry); vm.closeViewModal()">
+        <i class="fa fa-trash"></i> Delete
+      </button>
+      <button type="button" class="button-main" ng-click="vm.closeViewModal()">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+

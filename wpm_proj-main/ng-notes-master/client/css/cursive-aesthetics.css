@@ -1,0 +1,119 @@
+/* CURSIVE AESTHETICS - Elegant Typography */
+.cursive-text {
+  font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+}
+
+/* Tagline Styling with Cursive */
+.tagline.cursive-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  color: #6b7280;
+  letter-spacing: 0.03em;
+  line-height: 1.9;
+}
+
+/* Feature Descriptions */
+.feature-card p.cursive-text,
+.feature-card p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.8;
+}
+
+/* Developer Section */
+.developer-section p.cursive-text,
+.developer-section p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+/* Footer Notes */
+.footer-note.cursive-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+/* Entry Cards - Content Description */
+.entry-card p:not(.entry-date) {
+  font-family: 'Poppins', sans-serif;
+  font-style: normal;
+}
+
+.entry-card .entry-date.cursive-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+/* Todo Items - Subtle Cursive for Metadata */
+.todo-date.cursive-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Modal Placeholders - Elegant Cursive */
+input::placeholder,
+textarea::placeholder,
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: #9ca3af;
+  letter-spacing: 0.01em;
+}
+
+/* Empty State Messages */
+.empty-state p.cursive-text,
+.empty-state p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+/* Selected Entry Display */
+.selected-entry .entry-card p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+  line-height: 1.9;
+}
+
+/* Calendar Selected Entry */
+.selected-entry > p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* About Page Description */
+.about-page > p.cursive-text {
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+/* Responsive Cursive Adjustments */
+@media (max-width: 768px) {
+  .tagline.cursive-text {
+    font-size: 1.2rem;
+  }
+  
+  .feature-card p {
+    font-size: 1rem;
+  }
+}
+

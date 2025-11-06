@@ -1,0 +1,90 @@
+# Query: ng-notes
+# ContextLines: 1
+
+24 results - 7 files
+
+ng-notes-master\README.md:
+   8  
+   9: ![Diarium](https://raw.githubusercontent.com/anirudhkhanna/Diarium/master/client/assets/images/Diarium-md.png)
+  10  
+
+  12  
+  13: **Front-end-only demo:** https://anirudhkhanna.github.io/Diarium
+  14  
+
+ng-notes-master\bin\www:
+  7  var app = require('../app');
+  8: var debug = require('debug')('Diarium:server');
+  9  var http = require('http');
+
+ng-notes-master\client\index.html:
+   4  
+   5: 	<title>Diarium – Ideas are priceless</title>
+   6  
+
+   9  	<meta name="description" content="A comprehensive note-taking app to quickly capture what is on your mind - ideas, pictures, lists and more.">
+  10: 	<meta name="keywords" content="Notes, Ideas, Todo, Lists, Diarium">
+  11  	<meta name="author" content="Anirudh Khanna">
+
+ng-notes-master\client\controllers\profile.controller.js:
+  139  					title: '',
+  140: 					text: 'Your account was removed successfully. Thank you for trying out ng-notes.',
+  141  					imageUrl: 'assets/images/animation-removed.gif',
+
+ng-notes-master\client\views\landing.view.html:
+    6  			<div class="brand">
+    7: 				<a href="#"><span class="fa fa-paperclip"></span> Diarium</a>
+    8  			</div>
+
+   19  		<h3>Because ideas are priceless.</h3>
+   20: 		<h5>Inspiration strikes anywhere. Now capture your ideas on the fly with Diarium.</h5>
+   21  	</div>
+
+   26  			</div>
+   27: 			<img src="assets/images/Diarium-sm.png" class="product-image" />
+   28  		</div>
+
+   92  			Built with MEAN stack (MongoDB, Express, AngularJS and Node.js).
+   93: 			The UX is largely based on A<strong>ng</strong>ularJS - hence the name Diarium. <big>☺</big>
+   94  			<br /><br />
+
+  165  			<p>
+  166: 				&copy; <span id="copyright-years">2017</span> Diarium &nbsp;&bull;&nbsp; View code <a href="https://github.com/anirudhkhanna/ng-notes" target="_blank">on GitHub</a>
+  167  			</p>
+
+ng-notes-master\client\views\notes.view.html:
+   15  	<div class="brand">
+   16: 		<a ui-sref="notes.state-notes"><span class="fa fa-paperclip"></span> Diarium</a>
+   17  	</div>
+
+   75  			<li>
+   76: 				<a href="" class="ripple" data-toggle="modal" data-target="#about-modal"><span class="side-icon icon-info"></span> About Diarium</a>
+   77  			</li>
+   78  		<!--<li>
+   79: 				<a href="https://github.com/anirudhkhanna/Diarium" target="_blank" class="ripple"><span class="side-icon icon-github"></span> GitHub repo</a>
+   80  			</li>
+
+  148  
+  149: <!-- About Diarium -->
+  150  <!-- About modal -->
+
+  159  			<button type="button" class="close" data-dismiss="modal">&times;</button>
+  160: 			<h3 class="modal-header-title"><span class="fa fa-paperclip"></span> Diarium</h3>
+  161  		</div>
+
+  164  		<div class="modal-body">
+  165: 			<p>A comprehensive note-taking app to quickly capture what is on your mind - ideas, pictures, lists and more. Built with MEAN stack (MongoDB, Express, AngularJS and Node.js). The UX is largely based on AngularJS - hence the name Diarium. &#9786;</p>
+  166  
+  167: 			<p align="center" style="margin: 22px 0; font-weight: 500;">&copy; 2017 Diarium &nbsp;&bull;&nbsp; Inspired by Google Keep</p>
+  168  
+  169: 			<p align="center" style="font-size: 24px;"><a href="https://github.com/anirudhkhanna/ng-notes" target="_blank" title="View on GitHub" class="opt-tooltip" style="color: #564420;"><span class="fa fa-github"></span></a></p>
+  170  		</div>
+
+  175  </div>
+  176: <!-- /.About Diarium -->
+  177  
+
+ng-notes-master\routes\api-routes.js:
+  129  		note = new Note();
+  130: 		note.title = 'Welcome to Diarium';
+  131  		note.content = '<p>Capture your ideas effortlessly with NGN. <span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f604.svg);">&nbsp;</span><span class="fr-emoticon fr-deletable fr-emoticon-img" style="background: url(https://cdnjs.cloudflare.com/ajax/libs/emojione/2.0.1/assets/svg/1f606.svg);">&nbsp;</span><br><br>To add a new note, click on the <strong>+</strong> icon below.</p>';
